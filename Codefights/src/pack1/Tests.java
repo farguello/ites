@@ -440,70 +440,48 @@ public class Tests {
 	
 	boolean areSimilar(int[] a, int[] b) {
 		
-		int strike = 0;
-		int aux = 0;
+		int aux = -1;
+		int strikeout = 0;
 		
-		if (!Arrays.equals(a,b)){
-			System.out.println("AVISO: los arreglos no son iguales");
-			for (int i = 0; i < a.length ; i++){
-				if ( !(a[i] == b[i])){
-					System.out.println();
-					System.out.println("Estos numeros no son iguales: ");
-					System.out.println("a[" + i + "]->" + a[i] + " =/= " + b[i] + "<-b[" + i +"]");
-					strike++;
-					System.out.println();
-					System.out.println("Strike vale: " + strike);
+		if (!Arrays.equals(a, b)){
+			for (int i = 0; i < a.length; i++){
+				System.out.println("I vale:" + i);
+				System.out.println("Comparo " + a[i] + " con " + b[i]);
+				
+				if (a[i] != b[i] && aux != -1){
+					int aux2 = 0;
+					aux2 = b[aux];
+					b[aux] = b[i];
+					b[i] = aux2;
+
 				}
 				
-				if ( i == a.length - 1 && strike == 3) {
-					return true;
-				}
-				
-				if (strike == 2){
-					System.out.println();
-					System.out.println("Strike es mayor a 1. Retorno Falso");
+				if (a[i] != b[i] && aux == -1 && strikeout == 2){
 					return false;
 				}
 				
-				
-				if (strike == 1 && (i != a.length-1)) {
-					System.out.println();
-					System.out.println("Intercambiando valores: ");
-					System.out.println("Aux: " + aux + " / a[" + i + "]: " + a[i] + " / a[" + (i+1) + "]: " + a[i+1]);
-					aux = a[i+1];
-					System.out.println();
-					System.out.println("Ahora aux vale: " + aux);
-					a[i+1] = a[i];
-					System.out.println();
-					System.out.println("Ahora a[" + i + "] vale: " + a[i]);
-					a[i] = aux;
-					System.out.println();
-					System.out.println("Ahora a[" + (i+1) + "] vale: " + aux);
-					System.out.println();
-					System.out.println("<<NUEVOS>> Aux: " + aux + " / a[" + i + "]: " + a[i] + " / a[" + (i+1) + "]: " + a[i+1]);
-					strike += 2;
-					i--;
-					System.out.println("Strike vale " + strike + " y el indice vale: " + i + "(antes " + (i+1) + ")");
-					System.out.println();
-					System.out.println("Arreglo a: ");
-					for (int j = 0; j< a.length; j++){
-						System.out.print(a[j] + ", ");
-					}
-					System.out.println();
-					System.out.println("Arreglo b: ");
-					for (int j = 0; j< b.length; j++){
-						System.out.print(b[j] + ", ");
-					}
-					System.out.println();
-					
+				if (a[i] != b[i] && aux == -1 && strikeout == 0){
+					aux = i;
+					strikeout++;
 				}
+				
+				for (int j = 0; j<a.length;j++){
+					System.out.print(a[j]+", ");
+				}
+				System.out.println();
+				for (int j = 0; j<b.length;j++){
+					System.out.print(b[j]+", ");
+				}
+				System.out.println();
+								
 			}
+			
+			return true;
 		}
-		else {
+		else{
 			return true;
 		}
 		
-		return false;
 	}
 
 
