@@ -453,10 +453,12 @@ public class Tests {
 					aux2 = b[aux];
 					b[aux] = b[i];
 					b[i] = aux2;
-
+					if (a[i] != b[i] || a[aux] != b[aux]){
+						return false;
+					}
 				}
 				
-				if (a[i] != b[i] && aux == -1 && strikeout == 2){
+				if (a[i] != b[i] && aux != -1 && strikeout > 0){
 					return false;
 				}
 				
